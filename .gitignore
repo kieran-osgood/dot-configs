@@ -1,0 +1,9 @@
+# Ignore all new applications adding config
+/*
+
+!.gitignore
+
+# Explicitly allow applications we're configuring via .config
+!wezterm
+!nvim
+!starship.toml
