@@ -1,13 +1,13 @@
-# Note to future self - this wont be auto detected by zsh
-# so you will want to add a symlink to it 
-# `ln -sf ~/.config/zshrc/.zshrc $HOME/.zshrc`
 eval "$(starship init zsh)"
 eval "$(direnv hook zsh)"
 
-eval "$(zoxide init zsh)"
 alias cat="bat"
 alias ls="exa"
 alias z="zoxide"
+export EDITOR=/opt/homebrew/bin/nvim
+
+# FZF
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # stolen from user "alexreg" above in this issue
@@ -123,6 +123,13 @@ _direnv_hook() {
 # alias ipconfiglocal="ifconfig |grep inet"
 # alias dsa="docker stop $(docker ps -aq)"
 # alias pip=/usr/bin/pip3
+
+# Dirs
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
 
 # Git
 alias ga="git add"
@@ -285,3 +292,10 @@ flakify() {
   fi
   ${EDITOR:-vim} flake.nix
 }
+
+cx() { cd "$@" && l; }
+fcd() { cd "$(find . -type d -not -path '*/.*' | fzf)" && l; }
+f() { echo "$(find . -type f -not -path '*/.*' | fzf)" | pbcopy }
+fv() { nvim "$(find . -type f -not -path '*/.*' | fzf)" }
+
+eval "$(zoxide init zsh)"
