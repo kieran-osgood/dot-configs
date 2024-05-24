@@ -7,7 +7,8 @@ alias z="zoxide"
 export EDITOR=/opt/homebrew/bin/nvim
 
 # FZF
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow"
+alias fzf="fzf --preview 'bat --style=numbers --color=always {}'"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # stolen from user "alexreg" above in this issue
