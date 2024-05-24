@@ -1,4 +1,22 @@
-# .zshrc
+# Overview
+
+Setup steps for a new
+
+- [Overview](#overview)
+- [Homebrew installation:](#homebrew-installation)
+- [.zshrc](#zshrc)
+
+## Homebrew installation
+
+```bash
+# Save all installed packages for new machine
+brew leaves > leaves.txt
+
+# Installs previous packages into brew
+xargs brew install < leaves.txt
+```
+
+## .zshrc
 
 Z-Shell won't automatically check this directory for the config file.
 You can sym-link with this command:
@@ -7,13 +25,7 @@ You can sym-link with this command:
   ln -sf ~/.config/zshrc/.zshrc $HOME/.zshrc
 ```
 
-Install GNU stow (might be useful if we do more of this):
-
-```sh
-  brew install stow
-```
-
-Then link the file:
+Or it can be done via GNU Stow - which is installed as part of the [Homebrew Installation](#homebrew-installation):
 
 ```sh
   cd ~/.config
