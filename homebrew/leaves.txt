@@ -42,6 +42,7 @@ starship
 stow
 swiftlint
 thefuck
+tree
 watchman
 wix/brew/applesimutils
 xcbeautify
