@@ -6,7 +6,16 @@ local mux = wezterm.mux
 config.native_macos_fullscreen_mode = true
 
 -- Color
-config.color_scheme = "AdventureTime"
+local function scheme_for_appearance(appearance)
+	if appearance:find("Dark") then
+		-- config.color_scheme = "AdventureTime"
+		return "Catppuccin Frappe"
+	else
+		return "Catppuccin Latte"
+	end
+end
+
+config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
 
 -- Font
 config.font = wezterm.font("JetBrains Mono")
