@@ -46,5 +46,6 @@ tree
 watchman
 wix/brew/applesimutils
 xcbeautify
+zinit
 zoxide
 zsh

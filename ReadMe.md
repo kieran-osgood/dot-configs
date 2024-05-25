@@ -10,7 +10,7 @@ Setup steps for a new
 
 ```bash
 # Save all installed packages for new machine
-brew leaves > leaves.txt
+brew leaves > ~/.config/homebrew/leaves.txt
 
 # Installs previous packages into brew
 xargs brew install < leaves.txt
