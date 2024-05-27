@@ -3,6 +3,9 @@ eval "$(direnv hook zsh)" # Useful for shell.nix
 # Enable vim mode
 bindkey -v
 
+alias zshrc="nvim ~/.zshrc"
+alias dotconfig="cd ~/.config && nvim ."
+alias brew_leaves="brew leaves > ~/.config/homebrew/leaves.txt && brew list --casks >> ~/.config/homebrew/leaves.txt"
 
 # Plugin Manager
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"

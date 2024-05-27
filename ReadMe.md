@@ -9,8 +9,8 @@ Setup steps for a new
 ## Homebrew installation
 
 ```bash
-# Save all installed packages for new machine
-brew leaves > ~/.config/homebrew/leaves.txt
+# Save all installed packages for new machine - aliased in ./zshrc/.zshrc
+brew_leaves
 
 # Installs previous packages into brew
 xargs brew install < leaves.txt
