@@ -88,6 +88,7 @@ _direnv_hook() {
 alias c="clear"
 alias cat="bat"
 alias ls="exa"
+alias cd="z"
 
 # Dirs
 alias ..="cd .."
