@@ -5,7 +5,12 @@ bindkey -v
 
 alias zshrc="nvim ~/.zshrc"
 alias dotconfig="cd ~/.config && nvim ."
-alias brew_leaves="brew leaves > ~/.config/homebrew/leaves.txt && brew list --casks >> ~/.config/homebrew/leaves.txt"
+
+brew_leaves() {
+  brew leaves > ~/.config/homebrew/taps.txt
+  brew list --casks > ~/.config/homebrew/casks.txt
+}
+alias brew_leaves=brew_leaves
 
 # Plugin Manager
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -23,12 +28,12 @@ fi
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # FZF
-zinit light Aloxaf/fzf-tab
 
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow"
 alias fzf="fzf --preview 'bat --style=numbers --color=always {}'"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+zinit light Aloxaf/fzf-tab
 
 # Completions
 zinit light zsh-users/zsh-syntax-highlighting
@@ -53,11 +58,25 @@ zinit snippet OMZP::git
 zinit snippet OMZP::command-not-found
 zinit snippet OMZP::sudo
 
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+# NOTE: don't use escape sequences here, fzf-tab will ignore them
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+# switch group using `<` and `>`
+zstyle ':fzf-tab:*' switch-group '<' '>'
+
 # Lowercase path matching in `cd` etc
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors '${(s.:.)LS_COLORS}'
+# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+# zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 
 autoload -U compinit; compinit
 
@@ -107,7 +126,6 @@ alias gy="git pull"
 alias gs="git status"
 alias prune="git branch --merged | egrep -v \"(^\*|master|main|dev|develop|development)\" | xargs git branch -d"
 alias amend="git commit --amend --no-edit"
-
 
 # Neovim
 export EDITOR=/opt/homebrew/bin/nvim

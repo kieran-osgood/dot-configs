@@ -50,11 +50,4 @@ zinit
 zoxide
 zsh
 1password-cli
-alfred
-neovide
-react-native-debugger
-reactotron
-tableplus
-temurin@11
-temurin@8
-wezterm
+

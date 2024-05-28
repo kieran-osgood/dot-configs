@@ -1,0 +1,5 @@
+These don't exist on homebrew yet so need ot be installed elsewise
+Velja.app
+Dropover.app
+iHosts.app
+

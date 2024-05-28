@@ -13,7 +13,9 @@ Setup steps for a new
 brew_leaves
 
 # Installs previous packages into brew
-xargs brew install < leaves.txt
+xargs brew install < taps.txt
+# We separate this step out because of ambiguous clashes such as dash formulae vs cask
+xargs brew install --cask < casks.txt
 ```
 
 ## .zshrc
