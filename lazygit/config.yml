@@ -1,0 +1,17 @@
+promptToReturnFromSubprocess: false
+
+os:
+  editInTerminal: true
+
+  # open: "nvim {{filename}}"
+  # openCommand: "nvim"
+
+  editCommand: "nvim"
+  edit: 'nvim --server "$NVIM" --remote-tab {{filename}}'
+  editAtLine: 'nvim --server "$NVIM" --remote-tab {{filename}}; [ -z "$NVIM" ] || nvim --server "$NVIM" --remote-send ":{{line}}<CR>"'
+  editAtLineAndWait: "nvim +{{line}} {{filename}}"
+
+git:
+  commitPrefix:
+    pattern: "^\\w+\\/(\\w+-\\w+).*"
+    replace: "[$1] "

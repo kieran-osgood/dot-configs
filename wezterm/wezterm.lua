@@ -1,17 +1,18 @@
+-- Reference materials:
+-- - https://github.com/letieu/dotfiles/blob/master/dot_config/wezterm/wezterm.lua
+--
+
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 local mux = wezterm.mux
 
+-- Tabs
 config.use_fancy_tab_bar = false
--- config.native_macos_fullscreen_mode = false
 config.native_macos_fullscreen_mode = true
 
---   Puts tabs in macOS native top menu bar
--- config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
-
 -- Font
+config.font_size = 9
 config.font = wezterm.font("JetBrains Mono")
-config.font_size = 18.0
 
 -- Color
 local function scheme_for_appearance(appearance)
@@ -29,25 +30,16 @@ config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
 -- Window
 config.window_decorations = "RESIZE"
 
--- https://github.com/letieu/dotfiles/blob/master/dot_config/wezterm/wezterm.lua
-config.window_background_opacity = 0.6
+config.window_background_opacity = 0.8
 config.macos_window_background_blur = 40
-
--- config.window_frame = {
--- The font used in the tab bar.
--- font = wezterm.font({ family = "JetBrains Mono", weight = "Bold" }),
--- font_size = 16.0,
-
--- The overall background color of the tab bar when
--- the window is focused
--- active_titlebar_bg = "#333333",
--- }
+config.tab_bar_at_bottom = true
+config.hide_tab_bar_if_only_one_tab = true
 
 config.window_padding = {
 	left = 0,
 	right = 0,
 	top = 0,
-	bottom = 0,
+	bottom = "0px",
 }
 
 wezterm.on("gui-startup", function()
@@ -65,8 +57,8 @@ config.keys = {
 	{ key = "p", mods = "CMD", action = wezterm.action.PaneSelect({ alphabet = "1234567890" }) },
 	{ key = "p", mods = "CMD|SHIFT", action = wezterm.action.ActivateCommandPalette },
 	{
-		key = "r",
 		mods = "CMD",
+		key = "r",
 		action = wezterm.action.PromptInputLine({
 			description = "Enter new name for tab",
 			action = wezterm.action_callback(function(window, _, line)
@@ -76,6 +68,14 @@ config.keys = {
 			end),
 		}),
 	},
+	-- {
+	-- 	mods = "CMD",
+	-- 	key = ",",
+	-- 	action = wezterm.action.SpawnCommandInNewTab({
+	-- 		cwd = os.getenv("WEZTERM_CONFIG_DIR"),
+	-- 		args = { os.getenv("SHELL"), "-c", "$EDITOR $WEZTERM_CONFIG_FILE" },
+	-- 	}),
+	-- },
 }
 
 for i = 1, 8 do

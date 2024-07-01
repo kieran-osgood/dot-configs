@@ -4,11 +4,12 @@ eval "$(direnv hook zsh)" # Useful for shell.nix
 bindkey -v
 
 alias zshrc="nvim ~/.zshrc"
-alias dotconfig="cd ~/.config && nvim ."
+alias dot="cd ~/.config && nvim ."
 
-brew_leaves() {
+function brew_leaves {
   brew leaves > ~/.config/homebrew/taps.txt
   brew list --casks > ~/.config/homebrew/casks.txt
+  echo "Complete"
 }
 alias brew_leaves=brew_leaves
 
@@ -27,10 +28,31 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
-# FZF
+export BAT_OPTS="--color=always --style=numbers"
 
-export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow"
-alias fzf="fzf --preview 'bat --style=numbers --color=always {}'"
+# FZF
+# export FZF_DEFAULT_OPTS="--preview 'bat {}'"
+
+export FZF_DEFAULT_COMMAND="fd --type file --hidden --follow --exclude .git --exclude .idea"
+# export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+export FZF_CTRL_T_OPTS="--preview='less {}' --height=100% --bind shift-up:preview-page-up,shift-down:preview-page-down"
+
+# --bind='ctrl-n:down+preview(bat {}),ctrl-p:up+preview(bat {})'
+# export FZF_CTRL_T_OPTS="
+#   --walker-skip .git,node_modules,target
+#   --preview 'bat {}'
+#   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+alias pf='fzf --preview="bat {}"'
+
+# https://github.com/junegunn/fzf?tab=readme-ov-file#supported-commands
+# TODO: Not working?
+# _fzf_setup_completion path ag git kubectl
+# _fzf_setup_completion dir tree
+
+# ag didn't seem to work?
+# export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'
+# alias fzf="fzf --preview 'bat {}'"
+#
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 zinit light Aloxaf/fzf-tab
@@ -41,6 +63,7 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 
 # History
+# ctl + r - fzf show history
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
@@ -128,11 +151,12 @@ alias prune="git branch --merged | egrep -v \"(^\*|master|main|dev|develop|devel
 alias amend="git commit --amend --no-edit"
 
 # Neovim
-export EDITOR=/opt/homebrew/bin/nvim
+export EDITOR=nvim
+export VISUAL="nvr --remote-wait +'set bufhidden=wipe'"
 
 alias nv="neovide"
 alias vim="nvim"
-alias vi="nvim"
+alias vi="pf --print0 | xargs -0 -o nvim"
 alias storm="/Users/kieranosgood/Applications/WebStorm.app/Contents/MacOS/webstorm"
 alias webstorm="/Users/kieranosgood/Applications/WebStorm.app/Contents/MacOS/webstorm"
 

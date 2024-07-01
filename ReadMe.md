@@ -25,6 +25,7 @@ You can sym-link with this command:
 
 ```sh
   ln -sf ~/.config/zshrc/.zshrc $HOME/.zshrc
+  ln -sf ~/.config/lazygit/config.yml $HOME/Library/Application Support/lazygit/config.yml
 ```
 
 Or it can be done via GNU Stow - which is installed as part of the [Homebrew Installation](#homebrew-installation):

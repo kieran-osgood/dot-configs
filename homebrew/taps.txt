@@ -24,8 +24,6 @@ hashicorp/tap/terraform
 ios-deploy
 jq
 lazygit
-libffi
-libtermkey
 mobile-dev-inc/tap/maestro
 mysql
 node
@@ -49,5 +47,3 @@ xcbeautify
 zinit
 zoxide
 zsh
-1password-cli
-
