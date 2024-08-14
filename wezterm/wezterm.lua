@@ -41,11 +41,11 @@ config.window_padding = {
 	top = 0,
 	bottom = "0px",
 }
-
+--
 wezterm.on("gui-startup", function()
 	---@diagnostic disable-next-line: unused-local
 	local tab, _, window = mux.spawn_window({})
-	window:gui_window():toggle_fullscreen()
+	window:gui_window():maximize()
 end)
 
 config.keys = {
