@@ -8,15 +8,10 @@
 # 'start-at-login' needs to be 'true' for 'after-login-command' to work
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
 after-login-command = []
-
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = [
-  # 'S', 'move-workspace-to-monitor --wrap-around next', 'workspace-back-and-forth',
-  # 'M', 'move-workspace-to-monitor --wrap-around next', 'workspace-back-and-forth',
-  # 'C', 'move-workspace-to-monitor --wrap-around next', 'workspace-back-and-forth',
-]
+
 # Start AeroSpace at login
 start-at-login = true
 
@@ -47,7 +42,7 @@ key-mapping.preset = 'qwerty'
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # on-focus-changed = "move-mouse window-lazy-center"
-on-focus-changed = ['move-mouse window-force-center'] # Mouse lazily follows any focus (window or workspace)
+# on-focus-changed = ['move-mouse window-force-center'] # Mouse lazily follows any focus (window or workspace)
 
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
@@ -58,18 +53,19 @@ on-focus-changed = ['move-mouse window-force-center'] # Mouse lazily follows any
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 0 
-inner.vertical =   0 
-outer.left =       0 
-outer.bottom =     0 
-outer.top =        0 
-outer.right =      0 
+inner.horizontal = 0
+inner.vertical =   0
+outer.left =       0
+outer.bottom =     0
+outer.top =        0
+outer.right =      0
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # 'main' binding mode must be always presented
 [mode.main.binding]
-
+cmd-h = [] # Disable "hide application"
+cmd-alt-h = [] # Disable "hide others"
 # All possible keys:
 # - Letters.        a, b, c, ..., z
 # - Numbers.        0, 1, 2, ..., 9
@@ -124,7 +120,7 @@ alt-b = 'workspace B'
 alt-c = 'workspace C'
 alt-d = 'workspace D'
 alt-e = 'workspace E'
-# alt-f = 'workspace F'
+alt-f = 'workspace F'
 alt-g = 'workspace G'
 alt-i = 'workspace I'
 alt-m = 'workspace M'
@@ -157,7 +153,7 @@ alt-shift-b = 'move-node-to-workspace B'
 alt-shift-c = 'move-node-to-workspace C'
 alt-shift-d = 'move-node-to-workspace D'
 alt-shift-e = 'move-node-to-workspace E'
-# alt-shift-f = 'move-node-to-workspace F'
+alt-shift-f = 'move-node-to-workspace F'
 alt-shift-g = 'move-node-to-workspace G'
 alt-shift-i = 'move-node-to-workspace I'
 alt-shift-m = 'move-node-to-workspace M'
@@ -175,7 +171,7 @@ alt-shift-x = 'move-node-to-workspace X'
 alt-shift-y = 'move-node-to-workspace Y'
 alt-shift-z = 'move-node-to-workspace Z'
 
-alt-shift-f = 'fullscreen'
+# alt-shift-f = 'fullscreen'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -186,8 +182,8 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 alt-shift-semicolon = 'mode service'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-minus = 'resize smart -50'
-equal = 'resize smart +50'
+alt-minus = 'resize smart -100'
+alt-equal = 'resize smart +100'
 
 # alt-shift-r = 'mode resize'
 #
@@ -203,6 +199,7 @@ equal = 'resize smart +50'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
@@ -231,9 +228,14 @@ run = ["move-node-to-workspace S"]
 if.app-id = 'com.spotify.client'
 run = ["move-node-to-workspace M"]
 
+# NOTE: If we have any windows that show as float but we expect to be tiled do this
+# [[on-window-detected]]
+# if.app-id = ''
+# check-further-callbacks = true
+# run = ["layout tiling"]
+
 [workspace-to-monitor-force-assignment]
-S = ['benq', 'secondary', 2]
-M = ['benq', 'secondary', 2]
-C = ['benq', 'secondary', 2]
-
-
+S = ['benq','built-in', 'secondary', 2]
+M = ['benq','built-in', 'secondary', 2]
+C = ['benq','built-in', 'secondary', 2]
+ 
