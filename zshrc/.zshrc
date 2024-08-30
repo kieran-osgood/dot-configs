@@ -269,6 +269,15 @@ fcd() { cd "$(find . -type d -not -path '*/.*' | fzf)" && l; }
 f() { echo "$(find . -type f -not -path '*/.*' | fzf)" | pbcopy }
 fv() { nvim "$(find . -type f -not -path '*/.*' | fzf)" }
 
+# Usage: rgfzf [<rg SYNOPSIS>]
+function fg {
+  command rg --color=always --line-number --no-heading --smart-case "${*:-}" \
+  | command fzf -d':' --ansi \
+    --preview "command bat -p --color=always {1} --highlight-line {2}" \
+    --preview-window ~8,+{2}-5 \
+  | awk -F':' '{print $1}'
+}
+
 eval "$(zoxide init zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
