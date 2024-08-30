@@ -6,7 +6,7 @@
 # New space by left clicking separator (>)
 
 sketchybar --add event aerospace_workspace_change
-# echo $(aerospace list-workspaces --monitor 1 --visible no --empty no) >> ~/aaaa
+#echo $(aerospace list-workspaces --monitor 1 --visible no --empty no) >> ~/aaaa
 
 for m in $(aerospace list-monitors | awk '{print $1}'); do
   for i in $(aerospace list-workspaces --monitor $m); do
@@ -56,26 +56,25 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
 done
 
 
-# space_creator=(
-#   # icon=􀆊
-#   icon="􀆊"
-#   icon.font="$FONT:Heavy:16.0"
-#   padding_left=10
-#   padding_right=8
-#   label.drawing=off
-#   display=active
-#   #click_script='yabai -m space --create'
-#   script="$PLUGIN_DIR/space_windows.sh"
-#   #script="$PLUGIN_DIR/aerospace.sh"
-#   icon.color=$WHITE
-# )
+space_creator=(
+  icon=􀆊
+  icon.font="$FONT:Heavy:16.0"
+  padding_left=10
+  padding_right=8
+  label.drawing=off
+  display=active
+  #click_script='yabai -m space --create'
+  script="$PLUGIN_DIR/space_windows.sh"
+  #script="$PLUGIN_DIR/aerospace.sh"
+  icon.color=$WHITE
+)
 
 # sketchybar --add item space_creator left               \
 #            --set space_creator "${space_creator[@]}"   \
 #            --subscribe space_creator space_windows_change
-# sketchybar --add item space_creator left               \
-#            --set space_creator "${space_creator[@]}"   \
-#            --subscribe space_creator aerospace_workspace_change
+sketchybar --add item space_creator left               \
+           --set space_creator "${space_creator[@]}"   \
+           --subscribe space_creator aerospace_workspace_change
 
 # sketchybar  --add item change_windows left \
 #             --set change_windows script="$PLUGIN_DIR/change_windows.sh" \
