@@ -10,14 +10,16 @@ sketchybar --add event aerospace_workspace_change
 
 for m in $(aerospace list-monitors | awk '{print $1}'); do
   for i in $(aerospace list-workspaces --monitor $m); do
+    if [ "$m" -eq "1" ]; then display="2"; else display="1"; fi
     sid=$i
+
     space=(
       space="$sid"
       icon="$sid"
       icon.highlight_color=$RED
       icon.padding_left=10
       icon.padding_right=10
-      display=$m
+      display=$display
       padding_left=2
       padding_right=2
       label.padding_right=20
@@ -30,12 +32,14 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
       script="$PLUGIN_DIR/space.sh"
     )
 
+    # echo space[@] >> ~/aaaa
     sketchybar --add space space.$sid left \
                --set space.$sid "${space[@]}" \
                --subscribe space.$sid mouse.clicked
 
     apps=$(aerospace list-windows --workspace $sid | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
 
+    # sets up the app icons for each aerospace workspace
     icon_strip=" "
     if [ "${apps}" != "" ]; then
       while read -r app
@@ -52,7 +56,7 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
   for i in $(aerospace list-workspaces --monitor $m --empty); do
     sketchybar --set space.$i display=0
   done
-  
+
 done
 
 
@@ -72,6 +76,7 @@ space_creator=(
 # sketchybar --add item space_creator left               \
 #            --set space_creator "${space_creator[@]}"   \
 #            --subscribe space_creator space_windows_change
+
 sketchybar --add item space_creator left               \
            --set space_creator "${space_creator[@]}"   \
            --subscribe space_creator aerospace_workspace_change
