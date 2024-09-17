@@ -10,12 +10,11 @@ sketchybar --add event aerospace_workspace_change
 
 for m in $(aerospace list-monitors | awk '{print $1}'); do
   for i in $(aerospace list-workspaces --monitor $m); do
-    if [ "$m" -eq "1" ]; then display="2"; else display="1"; fi
-    sid=$i
+    if [ "$i" -eq "1" ]; then display="2"; else display="1"; fi
 
     space=(
-      space="$sid"
-      icon="$sid"
+      space="$i"
+      icon="$i"
       icon.highlight_color=$RED
       icon.padding_left=10
       icon.padding_right=10
@@ -33,11 +32,11 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
     )
 
     # echo space[@] >> ~/aaaa
-    sketchybar --add space space.$sid left \
-               --set space.$sid "${space[@]}" \
-               --subscribe space.$sid mouse.clicked
+    sketchybar --add space space.$i left \
+               --set space.$i "${space[@]}" \
+               --subscribe space.$i mouse.clicked
 
-    apps=$(aerospace list-windows --workspace $sid | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
+    apps=$(aerospace list-windows --workspace $i | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
 
     # sets up the app icons for each aerospace workspace
     icon_strip=" "
@@ -50,11 +49,11 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
       icon_strip=" —"
     fi
 
-    sketchybar --set space.$sid label="$icon_strip"
+    sketchybar --set space.$i label="$icon_strip"
   done
 
-  for i in $(aerospace list-workspaces --monitor $m --empty); do
-    sketchybar --set space.$i display=0
+  for a in $(aerospace list-workspaces --monitor $m --empty); do
+    sketchybar --set space.$a display=0
   done
 
 done
@@ -67,20 +66,11 @@ space_creator=(
   padding_right=8
   label.drawing=off
   display=active
-  #click_script='yabai -m space --create'
   script="$PLUGIN_DIR/space_windows.sh"
-  #script="$PLUGIN_DIR/aerospace.sh"
+  # script="$PLUGIN_DIR/aerospace.sh"
   icon.color=$WHITE
 )
-
-# sketchybar --add item space_creator left               \
-#            --set space_creator "${space_creator[@]}"   \
-#            --subscribe space_creator space_windows_change
 
 sketchybar --add item space_creator left               \
            --set space_creator "${space_creator[@]}"   \
            --subscribe space_creator aerospace_workspace_change
-
-# sketchybar  --add item change_windows left \
-#             --set change_windows script="$PLUGIN_DIR/change_windows.sh" \
-#             --subscribe change_windows space_changes

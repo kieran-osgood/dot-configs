@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
-echo AEROSPACE_PREV_WORKSPACE: $AEROSPACE_PREV_WORKSPACE, \
-	AEROSPACE_FOCUSED_WORKSPACE: $AEROSPACE_FOCUSED_WORKSPACE \
-	SELECTED: $SELECTED \
-	BG2: $BG2 \
-	INFO: $INFO \
-	SENDER: $SENDER \
-	NAME: $NAME \
-	>>~/aaaa
+# echo AEROSPACE_PREV_WORKSPACE: $AEROSPACE_PREV_WORKSPACE, \
+# 	AEROSPACE_FOCUSED_WORKSPACE: $AEROSPACE_FOCUSED_WORKSPACE \
+# 	SELECTED: $SELECTED \
+# 	BG2: $BG2 \
+# 	INFO: $INFO \
+# 	SENDER: $SENDER \
+# 	NAME: $NAME \
+# 	>>~/aaaa
 
 source "$CONFIG_DIR/colors.sh"
 
 AEROSPACE_FOCUSED_MONITOR=$(aerospace list-monitors --focused | awk '{print $1}')
-if [ "$AEROSPACE_FOCUSED_MONITOR" -eq "1" ]; then AEROSPACE_FOCUSED_MONITOR="2"; else AEROSPACE_FOCUSED_MONITOR="1"; fi
+# if [ "$AEROSPACE_FOCUSED_MONITOR" -eq "1" ]; then AEROSPACE_FOCUSED_MONITOR="2"; else AEROSPACE_FOCUSED_MONITOR="1"; fi
 AEROSPACE_WORKSPACE_FOCUSED_MONITOR=$(aerospace list-workspaces --monitor focused --empty no)
 AEROSPACE_EMPTY_WORKSPACE=$(aerospace list-workspaces --monitor focused --empty)
 
@@ -32,8 +32,8 @@ reload_workspace_icon() {
 	sketchybar --animate sin 10 --set space.$@ label="$icon_strip"
 }
 
+echo "ah$SENDER" >>~/te
 if [ "$SENDER" = "aerospace_workspace_change" ]; then
-
 	if [ $i = "$FOCUSED_WORKSPACE" ]; then
 		sketchybar --set space.$FOCUSED_WORKSPACE background.drawing=on
 	else
