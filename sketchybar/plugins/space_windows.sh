@@ -32,7 +32,7 @@ reload_workspace_icon() {
 	sketchybar --animate sin 10 --set space.$@ label="$icon_strip"
 }
 
-echo "ah$SENDER" >>~/te
+echo "$SENDER" >>~/te
 if [ "$SENDER" = "aerospace_workspace_change" ]; then
 	if [ $i = "$FOCUSED_WORKSPACE" ]; then
 		sketchybar --set space.$FOCUSED_WORKSPACE background.drawing=on
