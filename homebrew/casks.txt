@@ -1,8 +1,12 @@
 1password-cli
+nikitabobko/tap/aerospace
 alfred
+font-hack-nerd-font
+font-symbols-only-nerd-font
 neovide
+notunes
 reactotron
-rectangle
+sf-symbols
 tableplus
 temurin@11
 temurin@8

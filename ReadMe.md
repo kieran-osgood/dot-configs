@@ -6,6 +6,15 @@ Setup steps for a new
 - [Homebrew installation:](#homebrew-installation)
 - [.zshrc](#zshrc)
 
+## Mac os settings to override
+
+keyboard repeat rate
+
+```
+defaults write -g InitialKeyRepeat -int 15 # normal minimum is 15 (225 ms)
+defaults write -g KeyRepeat -int 2 # normal minimum is 2 (30 ms)
+```
+
 ## Homebrew installation
 
 ```bash
@@ -13,9 +22,10 @@ Setup steps for a new
 brew_leaves
 
 # Installs previous packages into brew
-xargs brew install < taps.txt
+xargs brew install < homebrew/taps.txt
+
 # We separate this step out because of ambiguous clashes such as dash formulae vs cask
-xargs brew install --cask < casks.txt
+xargs brew install --cask < homebrew/casks.txt
 ```
 
 ## .zshrc

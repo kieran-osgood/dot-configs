@@ -76,7 +76,7 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-zinit snippet OMZP::1password
+# zinit snippet OMZP::1password
 zinit snippet OMZP::git
 zinit snippet OMZP::command-not-found
 zinit snippet OMZP::sudo
@@ -268,6 +268,15 @@ cx() { cd "$@" && l; }
 fcd() { cd "$(find . -type d -not -path '*/.*' | fzf)" && l; }
 f() { echo "$(find . -type f -not -path '*/.*' | fzf)" | pbcopy }
 fv() { nvim "$(find . -type f -not -path '*/.*' | fzf)" }
+
+# Usage: rgfzf [<rg SYNOPSIS>]
+function fg {
+  command rg --color=always --line-number --no-heading --smart-case "${*:-}" \
+  | command fzf -d':' --ansi \
+    --preview "command bat -p --color=always {1} --highlight-line {2}" \
+    --preview-window ~8,+{2}-5 \
+  | awk -F':' '{print $1}'
+}
 
 eval "$(zoxide init zsh)"
 
