@@ -6,6 +6,7 @@ circleci
 cmake
 conan
 direnv
+eza
 fd
 felixkratz/formulae/borders
 felixkratz/formulae/sketchybar
@@ -27,7 +28,6 @@ ios-deploy
 jq
 lazygit
 libfido2
-libgit2
 mobile-dev-inc/tap/maestro
 mysql
 node

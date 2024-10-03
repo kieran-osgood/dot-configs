@@ -5,6 +5,7 @@ font-hack-nerd-font
 font-symbols-only-nerd-font
 neovide
 notunes
+raycast
 reactotron
 sf-symbols
 tableplus
