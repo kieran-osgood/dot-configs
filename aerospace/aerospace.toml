@@ -243,6 +243,10 @@ run = ["move-node-to-workspace S"]
 if.app-id = 'com.spotify.client'
 run = ["move-node-to-workspace M"]
 
+[[on-window-detected]]
+if.app-id = 'net.whatsapp.WhatsApp'
+run = ["move-node-to-workspace W"]
+
 # NOTE: If we have any windows that show as float but we expect to be tiled do this
 # [[on-window-detected]]
 # if.app-id = ''
