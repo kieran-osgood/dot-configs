@@ -286,3 +286,14 @@ eval "$(zoxide init zsh)"
 # Disabled due to direnv printing output on cd
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
+eval $(thefuck --alias)
+
+# Adds temrinal completions for all homebrew clis
+# e.g. aerospace  
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
