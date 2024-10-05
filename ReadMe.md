@@ -6,6 +6,13 @@ Setup steps for a new
 - [Homebrew installation:](#homebrew-installation)
 - [.zshrc](#zshrc)
 
+# Clone
+
+```
+git submodule init
+git submodule update
+```
+
 ## Mac os settings to override
 
 keyboard repeat rate
