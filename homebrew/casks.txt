@@ -9,6 +9,4 @@ raycast
 reactotron
 sf-symbols
 tableplus
-temurin@11
-temurin@8
 wezterm
