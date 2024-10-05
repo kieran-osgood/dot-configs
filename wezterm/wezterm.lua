@@ -9,6 +9,8 @@ local mux = wezterm.mux
 -- Tabs
 config.use_fancy_tab_bar = false
 config.native_macos_fullscreen_mode = true
+-- Allows tabs to auto resize after renaming
+config.tab_max_width = 500
 
 -- Font
 config.font_size = 9
