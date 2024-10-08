@@ -1,17 +1,16 @@
 eval "$(direnv hook zsh)" # Useful for shell.nix
 
 # Enable vim mode
-bindkey -v
+# bindkey -v
 
 alias zshrc="nvim ~/.zshrc"
 alias dot="cd ~/.config && nvim ."
 
-function brew_leaves {
+function brew_save {
   brew leaves > ~/.config/homebrew/taps.txt
   brew list --casks > ~/.config/homebrew/casks.txt
   echo "Complete"
 }
-alias brew_leaves=brew_leaves
 
 # Plugin Manager
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -28,20 +27,20 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
-export BAT_OPTS="--color=always --style=numbers"
+export BAT_OPTS="--color=always --style=numbers --theme=ansi"
 
 # FZF
 # export FZF_DEFAULT_OPTS="--preview 'bat {}'"
 
 export FZF_DEFAULT_COMMAND="fd --type file --hidden --follow --exclude .git --exclude .idea"
 # export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
-export FZF_CTRL_T_OPTS="--preview='less {}' --height=100% --bind shift-up:preview-page-up,shift-down:preview-page-down"
+# export FZF_CTRL_T_OPTS="--preview='less {}' --height=100% --bind shift-up:preview-page-up,shift-down:preview-page-down"
 
 # --bind='ctrl-n:down+preview(bat {}),ctrl-p:up+preview(bat {})'
-# export FZF_CTRL_T_OPTS="
-#   --walker-skip .git,node_modules,target
-#   --preview 'bat {}'
-#   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+export FZF_CTRL_T_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'bat {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 alias pf='fzf --preview="bat {}"'
 
 # https://github.com/junegunn/fzf?tab=readme-ov-file#supported-commands
@@ -264,18 +263,30 @@ flakify() {
   ${EDITOR:-vim} flake.nix
 }
 
-cx() { cd "$@" && l; }
-fcd() { cd "$(find . -type d -not -path '*/.*' | fzf)" && l; }
-f() { echo "$(find . -type f -not -path '*/.*' | fzf)" | pbcopy }
-fv() { nvim "$(find . -type f -not -path '*/.*' | fzf)" }
+function fzf_nvim() { 
+  nvim "$(find . -type f -not -path '*/.*' | fzf)" 
+}
 
-# Usage: rgfzf [<rg SYNOPSIS>]
-function fg {
+function fzf_cd() { 
+  cd "$(find . -type d -not -path '*/.*' | fzf)"; 
+}
+
+function fzf_cp() { 
+  echo "$(find . -type f -not -path '*/.*' | fzf)" | pbcopy 
+}
+
+
+function _fzf_grep() {
   command rg --color=always --line-number --no-heading --smart-case "${*:-}" \
   | command fzf -d':' --ansi \
     --preview "command bat -p --color=always {1} --highlight-line {2}" \
     --preview-window ~8,+{2}-5 \
   | awk -F':' '{print $1}'
+}
+
+# Allows writing the result of _fzf_grep to both clipboard and print
+function fzf_grep() {
+    _fzf_grep | tee >(pbcopy)  >(cat) >/dev/null
 }
 
 eval "$(zoxide init zsh)"
@@ -297,3 +308,15 @@ then
   autoload -Uz compinit
   compinit
 fi
+
+
+# Provides auto cd after exiting 
+# @see https://yazi-rs.github.io/docs/quick-start
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
