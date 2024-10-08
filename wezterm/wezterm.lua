@@ -13,7 +13,7 @@ config.native_macos_fullscreen_mode = true
 config.tab_max_width = 500
 
 -- Font
-config.font_size = 9
+config.font_size = 14
 config.font = wezterm.font("JetBrains Mono")
 
 -- Color
@@ -28,6 +28,9 @@ local function scheme_for_appearance(appearance)
 end
 
 config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
+
+config.send_composed_key_when_left_alt_is_pressed = true
+config.send_composed_key_when_right_alt_is_pressed = false
 
 -- Window
 config.window_decorations = "RESIZE"
