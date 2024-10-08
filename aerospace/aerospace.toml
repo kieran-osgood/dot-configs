@@ -9,8 +9,8 @@ after-login-command = []
 after-startup-command = [
   # JankyBorders has a built-in detection of already running process,
   # so it won't be run twice on AeroSpace restart
-  'exec-and-forget borders ax_focus=on style=round width=15.0 hidpi=on active_color=0xffabff4f inactive_color=0x00ffffff',
-  'exec-and-forget sketchybar',
+  'exec-and-forget borders ax_focus=on style=round width=10.0 hidpi=on active_color=0xffabff4f inactive_color=0x00ffffff',
+  'exec-and-forget sketchybar --hotreload',
 ]
 
 exec-on-workspace-change = [
@@ -65,7 +65,6 @@ inner.horizontal = 10
 inner.vertical = [{ monitor.'Retina' = 0 }, 10]
 outer.left = 10
 outer.bottom = 10
-# outer.top = 40        # outer.top = 10  on mac - 20 on external display
 outer.top = [{ monitor.'Retina' = 0 }, 40]
 outer.right = 10
 
@@ -75,6 +74,7 @@ outer.right = 10
 [mode.main.binding]
 cmd-h = []     # Disable "hide application"
 cmd-alt-h = [] # Disable "hide others"
+
 # All possible keys:
 # - Letters.        a, b, c, ..., z
 # - Numbers.        0, 1, 2, ..., 9
@@ -117,7 +117,7 @@ alt-shift-equal = 'resize smart +50'
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
-alt-3 = 'workspace 3'
+# alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
 alt-5 = 'workspace 5'
 alt-6 = 'workspace 6'
@@ -196,21 +196,6 @@ alt-shift-semicolon = 'mode service'
 alt-minus = 'resize smart -100'
 alt-equal = 'resize smart +100'
 
-# alt-shift-r = 'mode resize'
-#
-# [mode.resize.binding]
-# h = 'resize width -50'
-# j = 'resize height +50'
-# k = 'resize height -50'
-# l = 'resize width +50'
-# b = 'balance-sizes'
-
-# enter = 'mode main'
-# esc = 'mode main'
-
-# 'service' binding mode declaration.
-# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
-
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
@@ -246,6 +231,12 @@ run = ["move-node-to-workspace M"]
 [[on-window-detected]]
 if.app-id = 'net.whatsapp.WhatsApp'
 run = ["move-node-to-workspace W"]
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+if.window-title-regex-substring = 'Picture-in-picture'
+run = 'layout floating'
+check-further-callbacks = true
 
 # NOTE: If we have any windows that show as float but we expect to be tiled do this
 # [[on-window-detected]]
