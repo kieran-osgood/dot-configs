@@ -36,7 +36,6 @@ pnpm
 poppler
 protobuf@21
 pyenv
-python@3.8
 python@3.9
 rbenv
 ripgrep
