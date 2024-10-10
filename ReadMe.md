@@ -55,6 +55,7 @@ You can sym-link with this command:
 
 ```sh
   ln -sf ~/.config/zshrc/.zshrc $HOME/.zshrc
+  ln -sf ~/.config/idea/.ideavimrc $HOME/.ideavimrc
   ln -sf ~/.config/lazygit/config.yml $HOME/Library/Application\ Support/lazygit/config.yml
 ```
 

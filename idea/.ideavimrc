@@ -1,0 +1,60 @@
+" Helpful reminder that you can enable jetbrains to print action
+" https://github.com/JetBrains/ideavim?tab=readme-ov-file#finding-action-ids
+"
+if has('ide')
+    """ Map leader to space ---------------------
+    let mapleader=" "
+    set idearefactormode=visual
+    set selectmode=mouse,key,cmd,ideaselection
+    " Show a few lines of context around the cursor. Note that this makes the
+    " text scroll if you mouse-click near the start or end of the window.
+    set scrolloff=5
+
+    " Do incremental searching.
+    set incsearch
+
+    " Don't use Ex mode, use Q for formatting.
+    map Q gq
+
+    set relativenumber
+
+    :map <leader>cf <Action>(ReformatCode)
+    :map <leader>ca <Action>(ShowIntentionActions)
+    :map <leader>rr <Action>(RenameElement)
+
+    :map <leader>vr <Action>(IdeaVim.ReloadVimRc.reload)
+    " duplicate line 
+    nnoremap <C-d> yyp
+
+    nnoremap <leader>ut :action ToggleDistractionFreeMode<CR>
+    nnoremap <leader><leader> :action GotoFile<CR>
+
+    nnoremap <leader>wv :action SplitVertically<CR>
+    nnoremap <leader>ws :action SplitHorizontally<CR>
+
+    nnoremap <leader>wa :action CloseAllEditors<CR>
+
+
+    " code navigation
+    " nnoremap gd :action GotoImplementation<CR>
+
+    " code selection
+    nnoremap <C-j> :action MoveLineDown<CR>
+    nnoremap <C-k> :action MoveLineUp<CR>
+
+    " debugging
+    nnoremap <leader>dd :action Debug<CR>
+    nnoremap <leader>ds :action Stop<CR>
+    nnoremap <leader>db :action ToggleLineBreakpoint<CR>
+    nnoremap ]d :action GotoNextError<CR>
+    nnoremap [d :action GotoPreviousError<CR>
+
+    " mappings and options that exist only in IdeaVim
+    " map <leader>gd <Action>(GotoFile)
+    " map <leader>g <Action>(FindInPath)
+    " map <leader>b <Action>(Switcher)
+
+else
+    " some mappings for Vim/Neovim
+endif
+
