@@ -9,7 +9,7 @@ after-login-command = []
 after-startup-command = [
   # JankyBorders has a built-in detection of already running process,
   # so it won't be run twice on AeroSpace restart
-  'exec-and-forget borders ax_focus=on style=round width=10.0 hidpi=on active_color=0xffabff4f inactive_color=0x00ffffff',
+  'exec-and-forget borders ax_focus=on style=round width=13.0 hidpi=on active_color=0xffabff4f inactive_color=0x00ffffff',
   'exec-and-forget sketchybar --hotreload',
 ]
 
@@ -212,8 +212,9 @@ alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
-if.app-id = 'com.github.wez.wezterm'
-run = ["move-node-to-workspace F"]
+if.app-id = 'com.google.android.studio'
+run = ["move-node-to-workspace A"]
+
 
 [[on-window-detected]]
 if.app-id = 'com.cron.electron'
@@ -221,22 +222,53 @@ check-further-callbacks = true
 run = ["layout tiling", "move-node-to-workspace C"]
 
 [[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-run = ["move-node-to-workspace S"]
+if.app-id = 'com.apple.mail'
+run = ["move-node-to-workspace E"]
+
+[[on-window-detected]]
+if.app-id = 'com.github.wez.wezterm'
+run = ["move-node-to-workspace F"]
 
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
 run = ["move-node-to-workspace M"]
 
 [[on-window-detected]]
+if.app-id = 'com.google.Chrome.app.hpfldicfbfomlpcikngkocigghgafkph'
+# if.app-name-regex-substring='Messages'
+# if.window-title-regex-substring = 'Messages'
+run = ["move-node-to-workspace M"]
+
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = ["move-node-to-workspace O"]
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = ["move-node-to-workspace S"]
+
+[[on-window-detected]]
+if.app-id = 'com.audible.iphone'
+run = ["move-node-to-workspace U"]
+
+[[on-window-detected]]
 if.app-id = 'net.whatsapp.WhatsApp'
 run = ["move-node-to-workspace W"]
+
+[[on-window-detected]]
+if.app-id = 'company.thebrowser.Browser'
+run = ["move-node-to-workspace 1"]
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 if.window-title-regex-substring = 'Picture-in-picture'
 run = 'layout floating'
 check-further-callbacks = true
+
+# [[on-window-detected]]
+# if.app-id = ''
+# run = ["move-node-to-workspace "]
+
 
 # NOTE: If we have any windows that show as float but we expect to be tiled do this
 # [[on-window-detected]]
