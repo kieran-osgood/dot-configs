@@ -15,3 +15,6 @@ source ~/.config/zshrc/yazi.sh
 
 eval $(thefuck --alias)
 
+# SSH key via 1password
+export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+# mkdir -p ~/.1password && ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock
