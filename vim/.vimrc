@@ -1,11 +1,15 @@
+" https://github.com/JetBrains/ideavim?tab=readme-ov-file
+"
 " Helpful reminder that you can enable jetbrains to print action
 " https://github.com/JetBrains/ideavim?tab=readme-ov-file#finding-action-ids
-"
 if has('ide')
     """ Map leader to space ---------------------
     let mapleader=" "
-    set idearefactormode=visual
+    " set idearefactormode=visual
     set selectmode=mouse,key,cmd,ideaselection
+
+    set idearefactormode=keep
+
     " Show a few lines of context around the cursor. Note that this makes the
     " text scroll if you mouse-click near the start or end of the window.
     set scrolloff=5
@@ -18,11 +22,12 @@ if has('ide')
 
     set relativenumber
 
-    :map <leader>cf <Action>(ReformatCode)
-    :map <leader>ca <Action>(ShowIntentionActions)
-    :map <leader>rr <Action>(RenameElement)
+    map         gh <Action>(ShowErrorDescription)
+    map <leader>cf <Action>(ReformatCode)
+    map <leader>ca <Action>(ShowIntentionActions)
+    map <leader>rr <Action>(RenameElement)
 
-    :map <leader>vr <Action>(IdeaVim.ReloadVimRc.reload)
+    map <leader>vr <Action>(IdeaVim.ReloadVimRc.reload)
     " duplicate line 
     nnoremap <C-d> yyp
 
@@ -57,4 +62,3 @@ if has('ide')
 else
     " some mappings for Vim/Neovim
 endif
-
