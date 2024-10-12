@@ -256,6 +256,10 @@ if.app-id = 'net.whatsapp.WhatsApp'
 run = ["move-node-to-workspace W"]
 
 [[on-window-detected]]
+if.app-id = 'com.apple.dt.Xcode'
+run = ["move-node-to-workspace X"]
+
+[[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
 run = ["move-node-to-workspace 1"]
 
