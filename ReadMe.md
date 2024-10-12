@@ -8,7 +8,7 @@ Setup steps for a new
 
 # Clone
 
-```
+```sh
 git submodule init
 git submodule update
 ```
@@ -17,7 +17,7 @@ git submodule update
 
 keyboard repeat rate
 
-```
+```sh
 defaults write -g InitialKeyRepeat -int 15 # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 2 # normal minimum is 2 (30 ms)
 
@@ -39,6 +39,14 @@ xargs brew install --cask < homebrew/casks.txt
 ## Sketchybar
 
 https://github.com/forteleaf/sketkchybar-with-aerospace
+
+## AeroSpace
+
+This helps make windows not tiny when using mission control
+
+```sh
+defaults write com.apple.dock expose-group-apps -bool true && killall Dock
+```
 
 ## FZF
 
