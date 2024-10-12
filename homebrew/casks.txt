@@ -7,11 +7,13 @@ font-sf-pro
 font-symbols-only-nerd-font
 google-chrome
 jetbrains-toolbox
+karabiner-elements
 neovide
 notunes
 raycast
 reactotron
 sf-symbols
+shottr
 spotify
 tableplus
 wezterm
