@@ -3,12 +3,13 @@
 " Helpful reminder that you can enable jetbrains to print action
 " https://github.com/JetBrains/ideavim?tab=readme-ov-file#finding-action-ids
 if has('ide')
+    " Syncs p/P with system clipboard
+    set clipboard+=unnamed
+
     """ Map leader to space ---------------------
     let mapleader=" "
-    " set idearefactormode=visual
-    set selectmode=mouse,key,cmd,ideaselection
+    " set selectmode=mouse,key,cmd,ideaselection
 
-    set idearefactormode=keep
 
     " Show a few lines of context around the cursor. Note that this makes the
     " text scroll if you mouse-click near the start or end of the window.
@@ -18,7 +19,7 @@ if has('ide')
     set incsearch
 
     " Don't use Ex mode, use Q for formatting.
-    map Q gq
+    " map Q gq
 
     set relativenumber
 
@@ -58,7 +59,25 @@ if has('ide')
     " map <leader>gd <Action>(GotoFile)
     " map <leader>g <Action>(FindInPath)
     " map <leader>b <Action>(Switcher)
+    set which-key
+    Plug 'machakann/vim-highlightedyank'
 
+    Plug 'terryma/vim-multiple-cursors'
+      " Remap multiple-cursors shortcuts to match terryma/vim-multiple-cursors
+      nmap <C-n> <Plug>NextWholeOccurrence
+      xmap <C-n> <Plug>NextWholeOccurrence
+      nmap g<C-n> <Plug>NextOccurrence
+      xmap g<C-n> <Plug>NextOccurrence
+      xmap <C-x> <Plug>SkipOccurrence
+      xmap <C-p> <Plug>RemoveOccurrence
+
+      " Note that the default <A-n> and g<A-n> shortcuts don't work on Mac due to dead keys.
+      " <A-n> is used to enter accented text e.g. ñ
+      " Feel free to pick your own mappings that are not affected. I like to use <leader>
+      nmap <leader><C-n> <Plug>AllWholeOccurrences
+      xmap <leader><C-n> <Plug>AllWholeOccurrences
+      nmap <leader>g<C-n> <Plug>AllOccurrences
+      xmap <leader>g<C-n> <Plug>AllOccurrences
 else
     " some mappings for Vim/Neovim
 endif
