@@ -28,6 +28,9 @@ if has('ide')
     map <leader>ca <Action>(ShowIntentionActions)
     map <leader>rr <Action>(RenameElement)
 
+    " Treesitter emulation
+    map <C-space> <Action>(EditorSelectWord)
+
     map <leader>vr <Action>(IdeaVim.ReloadVimRc.reload)
     " duplicate line 
     nnoremap <C-d> yyp
@@ -60,6 +63,9 @@ if has('ide')
     " map <leader>g <Action>(FindInPath)
     " map <leader>b <Action>(Switcher)
     set which-key
+    " Ensures whichkey doesnt disappear after timeout
+    set notimeout
+
     Plug 'machakann/vim-highlightedyank'
 
     Plug 'terryma/vim-multiple-cursors'
