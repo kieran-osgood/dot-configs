@@ -1,34 +1,27 @@
-# Overview
+## Sketchybar
 
-Setup steps for a new
+Forked the sketchybar setup from here: [Sketchybar with Aerospace setup](https://github.com/forteleaf/sketkchybar-with-aerospace)
 
-- [Overview](#overview)
-- [Homebrew installation:](#homebrew-installation)
-- [.zshrc](#zshrc)
+## Setting up a new machine
 
-# Clone
+Don't forget to submodule init for neovim
 
 ```sh
 git submodule init
 git submodule update
 ```
 
-## Mac os settings to override
-
-keyboard repeat rate
-
-```sh
-defaults write -g InitialKeyRepeat -int 15 # normal minimum is 15 (225 ms)
-defaults write -g KeyRepeat -int 2 # normal minimum is 2 (30 ms)
-
-```
-
-## Homebrew installation
+Run the setup script, this requires sudo due to editing file that sets up sudo -> touch id in terminal
 
 ```bash
-# Save all installed packages for new machine - aliased in ./zshrc/.zshrc
-brew_save
+./setup.sh
+```
 
+### Homebrew installation
+
+> NOTE: `./setup.sh` will install the taps and casks on first install using
+
+```bash
 # Installs previous packages into brew
 xargs brew install < homebrew/taps.txt
 
@@ -36,41 +29,12 @@ xargs brew install < homebrew/taps.txt
 xargs brew install --cask < homebrew/casks.txt
 ```
 
-## Sketchybar
+## Leaving a machine
 
-https://github.com/forteleaf/sketkchybar-with-aerospace
-
-## AeroSpace
-
-This helps make windows not tiny when using mission control
-
-```sh
-defaults write com.apple.dock expose-group-apps -bool true && killall Dock
+```bash
+# Save all installed packages for new machine - aliased in ./zshrc/.zshrc
+brew_save
 ```
 
-## FZF
-
-Sets up the keybindings e.g. history with `CTRL-r`
-
-```sh
-$(brew --prefix)/opt/fzf/install
-```
-
-## .zshrc
-
-Z-Shell won't automatically check this directory for the config file.
-You can sym-link with this command:
-
-```sh
-  ln -sf ~/.config/zshrc/.zshrc $HOME/.zshrc
-  ln -sf ~/.config/vim/.vimrc $HOME/.vimrc
-  ln -sf ~/.config/vim/.ideavimrc $HOME/.ideavimrc
-  ln -sf ~/.config/lazygit/config.yml $HOME/Library/Application\ Support/lazygit/config.yml
-```
-
-Or it can be done via GNU Stow - which is installed as part of the [Homebrew Installation](#homebrew-installation):
-
-```sh
-  cd ~/.config
-  stow zshrc
-```
+Check for git ignored settings in `~/.config`
+Commit all up
