@@ -22,6 +22,6 @@
 !gh
 !vim
 !karabiner
-!raycast
+!raycast/extensions
 **/*/.DS_STORE
 !setup.sh
