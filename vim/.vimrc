@@ -23,13 +23,17 @@ if has('ide')
 
     set relativenumber
 
+    map         gcc <Action>(CommentByLineComment)
+    " Didnt work for some reason 
+    " xmap    gc <Action>(CommentByLineComment) 
     map         gh <Action>(ShowErrorDescription)
     map <leader>cf <Action>(ReformatCode)
     map <leader>ca <Action>(ShowIntentionActions)
     map <leader>rr <Action>(RenameElement)
 
-    " Treesitter emulation
+    " Treesitter emulation - overrides in insert to give code completion
     map <C-space> <Action>(EditorSelectWord)
+    imap <C-space> <Action>(CodeCompletion)
 
     map <leader>vr <Action>(IdeaVim.ReloadVimRc.reload)
     " duplicate line 
