@@ -10,7 +10,7 @@ sketchybar --add event aerospace_workspace_change
 
 for m in $(aerospace list-monitors | awk '{print $1}'); do
   for i in $(aerospace list-workspaces --monitor $m); do
-    if [ "$i" -eq "1" ]; then display="2"; else display="1"; fi
+    # if [ "$i" -eq "1" ]; then display="2"; else display="1"; fi
 
     space=(
       space="$i"
