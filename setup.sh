@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-# macos defaults - https://macos-defaults.com/mission-control/expose-group-apps.html
+# macos defaults -
+# See: https://macos-defaults.com/mission-control/expose-group-apps.html
+# to script more of this automatically
 function kill() {
 	local process_name=$1
 
