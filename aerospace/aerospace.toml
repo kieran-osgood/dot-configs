@@ -230,6 +230,10 @@ if.app-id = 'com.github.wez.wezterm'
 run = ["move-node-to-workspace F"]
 
 [[on-window-detected]]
+if.app-id = 'com.jetbrains.intellij'
+run = ["move-node-to-workspace I"]
+
+[[on-window-detected]]
 if.app-id = 'com.spotify.client'
 run = ["move-node-to-workspace M"]
 
