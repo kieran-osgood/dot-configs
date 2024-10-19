@@ -4,45 +4,7 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "New Rule (change left_shift+caps_lock to page_down, right_shift+caps_lock to left_command+mission_control)",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "caps_lock",
-                                    "modifiers": {
-                                        "mandatory": ["left_shift"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "page_down",
-                                        "modifiers": []
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "caps_lock",
-                                    "modifiers": {
-                                        "mandatory": ["right_shift"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "apple_vendor_keyboard_key_code": "mission_control",
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "<Ctrl-S-J> -> App Expose",
-                        "enabled": false,
+                        "description": "<Ctrl-J> -> App Expose",
                         "manipulators": [
                             {
                                 "from": {
@@ -63,15 +25,14 @@
                         ]
                     },
                     {
-                        "description": "<Ctrl-S-K> -> Mission Control",
-                        "enabled": false,
+                        "description": "<Ctrl-K> -> Mission Control",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "k",
                                     "modifiers": {
                                         "mandatory": ["left_control", "left_shift"],
-                                        "optional": []
+                                        "optional": ["any"]
                                     }
                                 },
                                 "to": [{ "key_code": "f3" }],
@@ -99,7 +60,6 @@
                     },
                     {
                         "description": "CAPS_LOCK -> HYPER (SHIFT+COMMAND+OPTION+CONTROL) or ESCAPE (If Alone)",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -242,12 +202,6 @@
             },
             "name": "Kieran",
             "selected": true,
-            "simple_modifications": [
-                {
-                    "from": { "key_code": "caps_lock" },
-                    "to": [{ "key_code": "escape" }]
-                }
-            ],
             "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
         },
         {
