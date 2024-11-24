@@ -19,5 +19,3 @@ eval $(thefuck --alias)
 export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
 # mkdir -p ~/.1password && ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock
 
-# bun completions
-[ -s "/Users/kieranosgood/.bun/_bun" ] && source "/Users/kieranosgood/.bun/_bun"
