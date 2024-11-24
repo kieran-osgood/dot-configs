@@ -2,12 +2,14 @@
 1password-cli
 aerospace
 alfred
+betterdisplay
 font-hack-nerd-font
 font-sf-pro
 font-symbols-only-nerd-font
 google-chrome
 jetbrains-toolbox
 karabiner-elements
+monitorcontrol
 neovide
 notunes
 raycast
