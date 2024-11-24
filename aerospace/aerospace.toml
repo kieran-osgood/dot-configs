@@ -215,6 +215,9 @@ alt-shift-l = ['join-with right', 'mode main']
 if.app-id = 'com.google.android.studio'
 run = ["move-node-to-workspace A"]
 
+[[on-window-detected]]
+if.app-id = 'net.battle.app'
+run = ["move-node-to-workspace B"]
 
 [[on-window-detected]]
 if.app-id = 'com.cron.electron'
@@ -234,6 +237,10 @@ if.app-id = 'com.jetbrains.intellij'
 run = ["move-node-to-workspace I"]
 
 [[on-window-detected]]
+if.app-id = 'org.pqrs.Karabiner-Elements.Settings'
+run = ["move-node-to-workspace M"]
+
+[[on-window-detected]]
 if.app-id = 'com.spotify.client'
 run = ["move-node-to-workspace M"]
 
@@ -250,6 +257,10 @@ run = ["move-node-to-workspace O"]
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
 run = ["move-node-to-workspace S"]
+
+[[on-window-detected]]
+if.app-id = 'com.valvesoftware.steam'
+run = ["layout tiling", "move-node-to-workspace S"]
 
 [[on-window-detected]]
 if.app-id = 'com.audible.iphone'
