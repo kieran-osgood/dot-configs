@@ -97,4 +97,9 @@ sed -i '' '3s/# //' /etc/pam.d/sudo_local
 #   cd ~/.config
 #   stow zshrc
 # ```
+#
+#
+# TODO:
+# add completion scripts for npm/bun
+#
 echo "Complete"
