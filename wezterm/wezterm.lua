@@ -73,6 +73,50 @@ config.keys = {
 			end),
 		}),
 	},
+	{
+		key = "LeftArrow",
+		mods = "CMD",
+		action = wezterm.action.AdjustPaneSize({ "Left", 5 }),
+	},
+	{
+		key = "DownArrow",
+		mods = "CMD",
+		action = wezterm.action.AdjustPaneSize({ "Down", 5 }),
+	},
+	{
+		key = "UpArrow",
+		mods = "CMD",
+		action = wezterm.action.AdjustPaneSize({ "Up", 5 }),
+	},
+	{
+		key = "RightArrow",
+		mods = "CMD",
+		action = wezterm.action.AdjustPaneSize({ "Right", 5 }),
+	},
+
+	{
+		key = "RightArrow",
+		mods = "CTRL",
+		action = wezterm.action.ActivatePaneDirection("Right"),
+	},
+
+	{
+		key = "LeftArrow",
+		mods = "CTRL",
+		action = wezterm.action.ActivatePaneDirection("Left"),
+	},
+
+	{
+		key = "UpArrow",
+		mods = "CTRL",
+		action = wezterm.action.ActivatePaneDirection("Up"),
+	},
+	{
+		key = "DownArrow",
+		mods = "CTRL",
+		action = wezterm.action.ActivatePaneDirection("Down"),
+	},
+
 	-- {
 	-- 	mods = "CMD",
 	-- 	key = ",",
