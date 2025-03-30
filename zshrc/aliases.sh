@@ -35,9 +35,12 @@ alias vi="pf --print0 | xargs -0 -o nvim"
 alias p=pnpm
 alias pn=pnpm
 
-# React Native
-alias simulators="xcrun simctl list"
-alias ipad="npx react-native run-ios --simulator=\"iPad Pro (9.7-inch)\""
-alias iphonese="npx react-native run-ios --simulator=\"iPhone SE (3rd generation)\""
-alias iphonemini="npx react-native run-ios --simulator=\"iPhone 13 mini\""
-alias booted="xcrun simctl list devices booted"
+# # React Native
+# alias simulators="xcrun simctl list"
+# alias ipad="npx react-native run-ios --simulator=\"iPad Pro (9.7-inch)\""
+# alias iphonese="npx react-native run-ios --simulator=\"iPhone SE (3rd generation)\""
+# alias iphonemini="npx react-native run-ios --simulator=\"iPhone 13 mini\""
+# alias booted="xcrun simctl list devices booted"
+
+# tmux
+alias t="tmuxinator"
