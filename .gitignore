@@ -22,5 +22,6 @@
 !gh
 !vim
 !karabiner
+!zellij
 **/*/.DS_STORE
 !setup.sh
