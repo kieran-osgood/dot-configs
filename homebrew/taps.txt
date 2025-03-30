@@ -1,6 +1,7 @@
 asdf
 aws-sam-cli
 bat
+bfg
 carthage
 circleci
 cmake
@@ -30,7 +31,7 @@ lazygit
 libfido2
 mobile-dev-inc/tap/maestro
 mysql
-node
+ncdu
 php
 pnpm
 poppler
@@ -46,6 +47,7 @@ starship
 stow
 thefuck
 tree
+vercel-cli
 watchman
 wix/brew/applesimutils
 xcbeautify
