@@ -2,9 +2,11 @@
 
 # Better overrides for basics
 export BAT_OPTS="--color=always --style=numbers --theme=ansi"
+alias lg="lazygit"
 alias cat="bat"
 alias ls="eza"
-alias cd="z"
+# alias cd="z"
+alias zw="zellij --layout welcome"
 
 # Dirs
 alias ..="cd .."
@@ -43,4 +45,5 @@ alias pn=pnpm
 # alias booted="xcrun simctl list devices booted"
 
 # tmux
-alias t="tmuxinator"
+alias zj="zellij"
+alias zjw="zellij -l welcome"
