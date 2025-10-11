@@ -6,6 +6,8 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 local mux = wezterm.mux
 
+config.enable_scroll_bar = true
+
 -- Tabs
 config.use_fancy_tab_bar = false
 config.native_macos_fullscreen_mode = true
@@ -29,8 +31,8 @@ end
 
 config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
 
-config.send_composed_key_when_left_alt_is_pressed = true
-config.send_composed_key_when_right_alt_is_pressed = false
+config.send_composed_key_when_left_alt_is_pressed = false
+config.send_composed_key_when_right_alt_is_pressed = true
 
 -- Window
 config.window_decorations = "RESIZE"
