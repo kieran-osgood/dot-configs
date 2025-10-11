@@ -82,7 +82,8 @@ ln -sf ~/.config/zshrc/.zshrc $HOME/.zshrc
 ln -sf ~/.config/vim/.vimrc $HOME/.vimrc
 ln -sf ~/.config/vim/.ideavimrc $HOME/.ideavimrc
 ln -sf ~/.config/lazygit/config.yml $HOME/Library/Application\ Support/lazygit/config.yml
-
+# ensures wezterm is styled correctly
+ln -sf ~/.config/wezterm/wezterm.lua ~/.wezterm.lua
 # Terminal sudo brings up touch id
 sudo cp /etc/pam.d/sudo_local.template /etc/pam.d/sudo_local
 sed -i '' '3s/# //' /etc/pam.d/sudo_local
