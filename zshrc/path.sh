@@ -3,8 +3,13 @@
 # START - Path variables
 export PATH=~/.npm-global/bin:$PATH
 export PATH=/opt/homebrew/bin:$PATH
-PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
+export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
 
+# npm
+export PATH=/Users/kieranosgood/.npm-packages/lib/bin:$PATH
+export PATH=/Users/kieranosgood/.npm-packages/bin:$PATH
+export PATH=/Users/kieranosgood/.npm-packages:$PATH
+export PATH=/Users/kieranosgood/.npm/bin:$PATH
 # pnpm
 export PNPM_HOME="/Users/kieranosgood/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
@@ -31,3 +36,8 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export PATH="/Users/kieranosgood/.bun/bin:$PATH"
 [ -s "/Users/kieranosgood/.bun/_bun" ] && source "/Users/kieranosgood/.bun/_bun"
 export PATH="$HOME/.local/bin:$PATH"
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
