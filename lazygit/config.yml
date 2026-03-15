@@ -1,9 +1,7 @@
 promptToReturnFromSubprocess: false
-
 os:
   editPreset: "nvim-remote"
   editInTerminal: true
-
   # open: "nvim {{filename}}"
   # openCommand: "nvim"
 
@@ -11,7 +9,10 @@ os:
   # editAtLine: 'nvim --server "$NVIM" --remote-tab {{filename}}; [ -z "$NVIM" ] || nvim --server "$NVIM" --remote-send ":{{line}}<CR>"'
   # editAtLineAndWait: "nvim +{{line}} {{filename}}"
 git:
-  autoFetch: false
+  autoFetch: true
+  pagers:
+    - colorArg: always
+      pager: delta --paging=never
 #   commitPrefix:
 # pattern: "^\\w+\\/(\\w+-\\w+).*"
 # replace: "[$1] "
