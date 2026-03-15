@@ -4,6 +4,7 @@
 
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
+
 local mux = wezterm.mux
 
 config.enable_scroll_bar = true
@@ -40,7 +41,7 @@ config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.8
 config.macos_window_background_blur = 40
 config.tab_bar_at_bottom = true
-config.hide_tab_bar_if_only_one_tab = true
+config.hide_tab_bar_if_only_one_tab = false
 
 config.window_padding = {
 	left = 0,
@@ -161,4 +162,119 @@ wezterm.on("user-var-changed", function(window, pane, name, value)
 	window:set_config_overrides(overrides)
 end)
 
+config.text_blink_ease_in = "EaseIn"
+config.text_blink_ease_out = "EaseOut"
+config.text_blink_rapid_ease_in = "Linear"
+config.text_blink_rapid_ease_out = "Linear"
+config.text_blink_rate = 500
+config.text_blink_rate_rapid = 250
+
+-- config.enable_tab_bar = true
+-- config.hide_tab_bar_if_only_one_tab = false
+-- config.show_new_tab_button_in_tab_bar = true
+-- config.show_tab_index_in_tab_bar = false
+-- config.show_tabs_in_tab_bar = true
+-- config.switch_to_last_active_tab_when_closing_tab = false
+-- config.tab_and_split_indices_are_zero_based = false
+-- config.tab_bar_at_bottom = true
+-- config.tab_max_width = 25
+-- config.use_fancy_tab_bar = false
+
+config.cursor_blink_ease_in = "EaseIn"
+config.cursor_blink_ease_out = "EaseOut"
+config.cursor_blink_rate = 500
+config.default_cursor_style = "BlinkingBlock"
+config.cursor_thickness = 1
+config.force_reverse_video_cursor = true
+config.animation_fps = 60
+
+config.audible_bell = "SystemBeep"
+config.visual_bell = {
+	fade_in_function = "EaseOut",
+	fade_in_duration_ms = 200,
+	fade_out_function = "EaseIn",
+	fade_out_duration_ms = 200,
+}
+config.enable_scroll_bar = true
+
+config.hide_mouse_cursor_when_typing = true
+
+config.text_blink_ease_in = "EaseIn"
+config.text_blink_ease_out = "EaseOut"
+config.text_blink_rapid_ease_in = "Linear"
+config.text_blink_rapid_ease_out = "Linear"
+config.text_blink_rate = 500
+config.text_blink_rate_rapid = 250
+
+wezterm.on("update-right-status", function(window, pane)
+	local cells = {}
+
+	-- Get cwd from pane
+	local cwd_uri = pane:get_current_working_dir()
+	local cwd = ""
+
+	if cwd_uri then
+		if type(cwd_uri) == "userdata" then
+			cwd = cwd_uri.file_path
+		else
+			cwd_uri = cwd_uri:sub(8)
+			local slash = cwd_uri:find("/")
+			if slash then
+				cwd = cwd_uri:sub(slash):gsub("%%(%x%x)", function(hex)
+					return string.char(tonumber(hex, 16))
+				end)
+			end
+		end
+	end
+
+	-- Get git branch
+	local branch = ""
+	if cwd ~= "" then
+		local success, stdout, _ = wezterm.run_child_process({ "git", "-C", cwd, "rev-parse", "--abbrev-ref", "HEAD" })
+		if success then
+			branch = stdout:gsub("%s+", "")
+		end
+	end
+
+	-- Branch in datetime slot (first), cwd in battery slot (last)
+	if branch ~= "" then
+		table.insert(cells, " " .. branch)
+	end
+	if cwd ~= "" then
+		table.insert(cells, cwd)
+	end
+
+	local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
+
+	-- Colors from datetime (#663a82) and battery (#7c5295) slots
+	local colors = {
+		"#663a82",
+		"#7c5295",
+	}
+
+	local text_fg = "#c0c0c0"
+	local elements = {}
+	local num_cells = 0
+
+	local function push(text, is_last)
+		local cell_no = num_cells + 1
+		table.insert(elements, { Foreground = { Color = text_fg } })
+		table.insert(elements, { Background = { Color = colors[cell_no] } })
+		table.insert(elements, { Text = " " .. text .. " " })
+		if not is_last then
+			table.insert(elements, { Foreground = { Color = colors[cell_no + 1] } })
+			table.insert(elements, { Text = SOLID_LEFT_ARROW })
+		end
+		num_cells = num_cells + 1
+	end
+
+	while #cells > 0 do
+		local cell = table.remove(cells, 1)
+		push(cell, #cells == 0)
+	end
+
+	window:set_right_status(wezterm.format(elements))
+end)
 return config
+
+-- return config
