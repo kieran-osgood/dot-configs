@@ -3,7 +3,7 @@
 # Better overrides for basics
 export BAT_OPTS="--color=always --style=numbers --theme=ansi"
 alias lg="lazygit"
-alias cat="bat"
+# alias cat="bat"
 alias ls="eza"
 # alias cd="z"
 alias zw="zellij --layout welcome"
